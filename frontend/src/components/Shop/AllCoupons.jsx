@@ -10,7 +10,6 @@ import Loader from "../Layout/Loader";
 import { server } from "../../server";
 import { toast } from "react-toastify";
 import { useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 
 const AllCoupons = () => {
   const [open, setOpen] = useState(false);

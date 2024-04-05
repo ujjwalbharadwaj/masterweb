@@ -21,7 +21,7 @@ import {
   OrderDetailsPage,
   TrackOrderPage,
   UserInbox,
-  AllCoupons
+  AllCoupons,
 } from "./routes/Routes.js";
 import {
   ShopDashboardPage,
@@ -45,7 +45,7 @@ import {
   AdminDashboardOrders,
   AdminDashboardProducts,
   AdminDashboardEvents,
-  AdminDashboardWithdraw
+  AdminDashboardWithdraw,
 } from "./routes/AdminRoutes";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -187,7 +187,7 @@ const App = () => {
           element={
             <ProtectedAdminRoute>
               <ShopCreateProduct />
-             </ProtectedAdminRoute>
+            </ProtectedAdminRoute>
           }
         />
         <Route
@@ -215,12 +215,7 @@ const App = () => {
             </SellerProtectedRoute>
           }
         />
-        <Route
-          path="/dashboard-products"
-          element={
-              <ShopAllProducts />
-          }
-        />
+        <Route path="/dashboard-products" element={<ShopAllProducts />} />
         <Route
           path="/dashboard-create-event/:id"
           element={
@@ -228,16 +223,15 @@ const App = () => {
               <ShopCreateEvents />
             </ProtectedAdminRoute>
           }
-          />
-         <Route
+        />
+        <Route
           path="/dashboard-create-coupan/:id"
           element={
             <ProtectedAdminRoute>
-            <AllCoupons/>
+              <AllCoupons />
               {/* <ShopCreateEvents /> */}
             </ProtectedAdminRoute>
             // <AllCoupons/>
-
           }
         />
         <Route
@@ -256,13 +250,12 @@ const App = () => {
             </SellerProtectedRoute>
           }
         />
-         <Route
+        <Route
           path="/admin-dashboard-coupouns"
           element={
-<ProtectedAdminRoute>
+            <ProtectedAdminRoute>
               <ShopAllCoupouns />
-</ProtectedAdminRoute>
-
+            </ProtectedAdminRoute>
           }
         />
         <Route
@@ -273,7 +266,7 @@ const App = () => {
             </SellerProtectedRoute>
           }
         />
-        
+
         <Route
           path="/dashboard-messages"
           element={
@@ -315,7 +308,7 @@ const App = () => {
             </ProtectedAdminRoute>
           }
         />
-         <Route
+        <Route
           path="/admin-products"
           element={
             <ProtectedAdminRoute>
@@ -323,7 +316,7 @@ const App = () => {
             </ProtectedAdminRoute>
           }
         />
-         <Route
+        <Route
           path="/admin-events"
           element={
             <ProtectedAdminRoute>
@@ -331,7 +324,7 @@ const App = () => {
             </ProtectedAdminRoute>
           }
         />
-         <Route
+        <Route
           path="/admin-withdraw-request"
           element={
             <ProtectedAdminRoute>
