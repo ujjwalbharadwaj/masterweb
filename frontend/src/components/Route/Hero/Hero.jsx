@@ -50,7 +50,7 @@ const handleTouchEnd = () => {
 
   return (
     <div
-    className={`relative min-h-[20vh] 800px:min-h-[80vh] w-full bg-no-repeat ${styles.normalFlex}`}
+    className={`relative min-h-[30vh] 80px:min-h-[40vh] w-full bg-no-repeat ${styles.normalFlex}`}
           style={{
         backgroundImage: `url(${backgroundImageUrls[currentSlide]})`,
         backgroundSize: "cover", //contain
@@ -76,8 +76,8 @@ const handleTouchEnd = () => {
           </div> */}
         </Link>
       </div>
-      {/* dost for indicating current slide */}
-      <div className="absolute bottom-5 left-0 right-0 flex justify-center">
+      {/* dots for indicating current slide */}
+      <div className="absolute bottom-3 left-0 right-0 flex justify-center">
         {backgroundImageUrls.map((_, index) => (
           <span
             key={index}

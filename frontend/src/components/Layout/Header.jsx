@@ -1,4 +1,4 @@
-import React, { useState,useRef, useEffect} from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styles from "../../styles/styles";
 import { categoriesData, productData } from "../../static/data";
@@ -30,7 +30,6 @@ const Header = ({ activeHeading }) => {
   const [openCart, setOpenCart] = useState(false);
   const [openWishlist, setOpenWishlist] = useState(false);
   const [open, setOpen] = useState(false);
-  
   const searchInputRef = useRef(null);
 
   const handleSearchChange = (e) => {
@@ -40,7 +39,6 @@ const Header = ({ activeHeading }) => {
     const filteredProducts =
       allProducts &&
       allProducts.filter((product) => {
-
         let p1 =
           product.name.toLowerCase().includes(term.toLowerCase()) ||
           product.category.toLowerCase().includes(term.toLowerCase()) ||
@@ -63,8 +61,6 @@ const Header = ({ activeHeading }) => {
     };
     if (open) {
       document.addEventListener("click", handleClickOutside);
-  
-  
     } else {
       document.removeEventListener("click", handleClickOutside);
     }
@@ -74,7 +70,10 @@ const Header = ({ activeHeading }) => {
   }, [open]);
   useEffect(() => {
     const handleClickOutside = (e) => {
-      if (searchInputRef.current && !searchInputRef.current.contains(e.target)) {
+      if (
+        searchInputRef.current &&
+        !searchInputRef.current.contains(e.target)
+      ) {
         setSearchData(null);
       }
     };
@@ -84,15 +83,22 @@ const Header = ({ activeHeading }) => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
-  
 
   return (
     <>
       <div className={`${styles.section}`}>
-        <div className="hidden 800px:h-[50px] 800px:my-[20px] 800px:flex items-center justify-between">
+        <div className="hidden 800px:h-[40px] 800px:my-[10px] 800px:flex items-center justify-between">
           <div>
             <Link to="/">
-            <h1 style={{ color: '#142337', fontSize: '44px', fontWeight: 'bold' }}>vaymp</h1>
+              <h1
+                style={{
+                  color: "#142337",
+                  fontSize: "44px",
+                  fontWeight: "bold",
+                }}
+              >
+                vaymp
+              </h1>
             </Link>
           </div>
           {/* search box */}
@@ -142,17 +148,17 @@ const Header = ({ activeHeading }) => {
       <div
         className={`${
           active === true ? "shadow-sm fixed top-0 left-0 z-10" : null
-        } transition hidden 800px:flex items-center justify-between w-full bg-[#3321c8] h-[70px]`}
+        } transition hidden 800px:flex items-center justify-between w-full bg-[#3321c8] h-[60px]`}
       >
         <div
           className={`${styles.section} relative ${styles.noramlFlex} justify-between`}
         >
           {/* categories */}
           <div onClick={() => setDropDown(!dropDown)}>
-            <div className="relative h-[60px] mt-[10px] w-[270px] hidden 1000px:block">
+          <div className="relative mt-[1px] h-[50px] w-[270px] hidden 1000px:block">
               <BiMenuAltLeft size={30} className="absolute top-3 left-2" />
               <button
-                className={`h-[100%] w-full flex justify-between items-center pl-10 bg-white font-sans text-lg font-[500] select-none rounded-t-md`}
+                className={`h-[100%] w-full flex justify-between items-center pl-10 bg-[#ffffff] font-sans text-lg font-[500] select-none rounded-t-md`}
               >
                 All Categories
               </button>
@@ -233,10 +239,9 @@ const Header = ({ activeHeading }) => {
 
       {/* mobile header */}
       <div
-        className={`${
-          active === true ? "shadow-sm fixed top-0 left-0 z-10" : null
-        }
-      w-full h-[60px] bg-[#fff] z-50 top-0 left-0 shadow-sm 800px:hidden`}
+        className={`sticky top-0 z-[10] bg-white w-full h-[60px] ${
+          active ? "shadow-sm" : ""
+        } 800px:hidden`}
       >
         <div className="w-full flex items-center justify-between">
           <div>
@@ -248,7 +253,15 @@ const Header = ({ activeHeading }) => {
           </div>
           <div>
             <Link to="/">
-            <h1 style={{ color: '#142337', fontSize: '44px', fontWeight: 'bold' }}>vaymp</h1>
+              <h1
+                style={{
+                  color: "#142337",
+                  fontSize: "44px",
+                  fontWeight: "bold",
+                }}
+              >
+                vaymp
+              </h1>
             </Link>
           </div>
           <div>
@@ -294,36 +307,6 @@ const Header = ({ activeHeading }) => {
                 />
               </div>
 
-{/* Search bar */}
-<div className="my-8 w-[92%] m-auto h-[40px relative]" ref={searchInputRef}>                <input
-                  type="search"
-                  placeholder="Search Product..."
-                  className="h-[40px] w-full px-2 border-[#3957db] border-[2px] rounded-md"
-                  value={searchTerm}
-                  onChange={handleSearchChange}
-                />
-{searchData && searchData.length > 0 && (                  <div className="absolute bg-[#fff] z-10 shadow w-full left-0 p-3">
-                    {searchData.map((i) => {
-                      const d = i.name;
-
-                      const Product_name = d.replace(/\s+/g, "-");
-                      return (
-                        <Link to={`/product/${i._id}`}>
-                          <div className="flex items-center">
-                            <img
-                              src={i.image_Url?.[0]?.url}
-                              alt=""
-                              className="w-[50px] mr-2"
-                            />
-                            <h5>{i.name}</h5>
-                          </div>
-                        </Link>
-                      );
-                    })}
-                  </div>
-                )}
-              </div>
-
               <Navbar active={activeHeading} />
               <div className={`${styles.button} ml-4 !rounded-[4px]`}>
                 <Link to="/shop-create">
@@ -365,6 +348,42 @@ const Header = ({ activeHeading }) => {
                 )}
               </div>
             </div>
+          </div>
+        )}
+      </div>
+      {/* search bar */}
+      <div
+        className="sticky top-[60px] z-[10] bg-white my-1 w-[100%] m-auto h-[40px relative] block 800px:hidden"
+        ref={searchInputRef}
+      >
+        <input
+          type="text"
+          placeholder="Search Product..."
+          value={searchTerm}
+          onChange={handleSearchChange}
+          className="h-[40px] w-full px-2 border-[#3957db] border-[1px] rounded"
+        />
+        <AiOutlineSearch
+          size={30}
+          className="absolute right-2 top-1.5 cursor-pointer"
+        />
+
+        {searchData && searchData.length > 0 && (
+          <div className="absolute bg-[#fff] z-10 shadow w-full left-0 p-3">
+            {searchData.map((i) => {
+              return (
+                <Link to={`/product/${i._id}`}>
+                  <div className="flex items-center">
+                    <img
+                      src={i.image_Url?.[0]?.url}
+                      alt=""
+                      className="w-[50px] mr-2"
+                    />
+                    <h5>{i.name}</h5>
+                  </div>
+                </Link>
+              );
+            })}
           </div>
         )}
       </div>
